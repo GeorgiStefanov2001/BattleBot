@@ -42,21 +42,25 @@ void loop() {
   Usb.Task();
   if(Xbox.XboxReceiverConnected){
     if(Xbox.Xbox360Connected[0]){
-        if(Xbox.getButtonPress(R2,0)){  
-          control_motor(in2,in1); //right motor forward
-          control_motor(in4,in3); //left motor forward
-          bot_speed = Xbox.getButtonPress(R2,0);
-          turn();
-        }else if(Xbox.getButtonPress(L2,0)){
-          control_motor(in1,in2); //right motor backwards
-          control_motor(in3,in4); //left motor backwards
-          bot_speed = Xbox.getButtonPress(L2,0);
-          turn();
-        }
+      if(Xbox.getButtonPress(R2,0)){  
+        control_motor(in2,in1); //right motor forward
+        control_motor(in4,in3); //left motor forward
+        bot_speed = Xbox.getButtonPress(R2,0);
+        turn();
+      }else if(Xbox.getButtonPress(L2,0)){
+        control_motor(in1,in2); //right motor backwards
+        control_motor(in3,in4); //left motor backwards
+        bot_speed = Xbox.getButtonPress(L2,0);
+        turn();
+      }else{
+        turnOffMotor('r');
+        turnOffMotor('l');
       }
-  }else{
-    turnOffMotor('r');
-    turnOffMotor('l');
+    }
+    else{
+      turnOffMotor('r');
+      turnOffMotor('l');
+    }
   }
 }
 
